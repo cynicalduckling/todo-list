@@ -13,6 +13,7 @@ const Login = ({ setUsername, handleSubmit, username }) => {
         <input
           className="self-stretch placeholder-black dark:placeholder-white bg-transparent border border-black dark:border-white rounded-full px-4 h-10 mb-4"
           type="text"
+          autoComplete="off"
           value={username}
           placeholder="enter your username"
           onChange={(e) =>

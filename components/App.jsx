@@ -1,10 +1,10 @@
 "use client";
 
-import Login from "./Login";
+import Login from "@/components/Login";
 import { useState } from "react";
-import ThemeSwitcher from "./ThemeSwitcher";
-import Tasks from "./Tasks";
-import TasksPage from "./TasksPage";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import Tasks from "@/components/Tasks";
+import TasksPage from "@/components/TasksPage";
 
 const App = () => {
   const [username, setUsername] = useState({
