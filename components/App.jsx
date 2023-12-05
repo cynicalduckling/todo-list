@@ -27,13 +27,11 @@ const App = () => {
   return (
     <div className="dark:text-white">
       <ThemeSwitcher />
-      {username.searchVisible && (
-        <Login
-          username={username.username}
-          setUsername={setUsername}
-          handleSubmit={handleSubmit}
-        />
-      )}
+      <Login
+        username={username.username}
+        setUsername={setUsername}
+        handleSubmit={handleSubmit}
+      />
       <TasksPage>
         <Tasks />
       </TasksPage>

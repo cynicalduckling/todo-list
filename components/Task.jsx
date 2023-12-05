@@ -1,3 +1,5 @@
+"use client";
+
 const Task = ({ task, className }) => {
   return (
     <div className={className}>
