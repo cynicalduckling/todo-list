@@ -14,5 +14,4 @@ const Tasks = () => {
     </div>
   );
 };
-//test
 export default Tasks;
