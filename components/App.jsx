@@ -1,40 +1,24 @@
 "use client";
-
-import Login from "@/components/Login";
-import { useState } from "react";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
-import Tasks from "@/components/Tasks";
-import TasksPage from "@/components/TasksPage";
+import { getTasks } from "@/actions";
 
 const App = () => {
-  const [username, setUsername] = useState({
-    username: localStorage.getItem("location")?.length
-      ? localStorage.getItem("location")
-      : "",
-    searchVisible: true,
-  });
-
-  const [search, setSearch] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setUsername({ username: "", searchVisible: false });
-    setSearch(true);
-  };
-
-  const [tasks, setTasks] = useState([]);
-
   return (
     <div className="dark:text-white">
       <ThemeSwitcher />
-      <Login
-        username={username.username}
-        setUsername={setUsername}
-        handleSubmit={handleSubmit}
-      />
-      <TasksPage>
-        <Tasks />
-      </TasksPage>
+      <form
+        action={getTasks}
+        className="h-[300px] w-[300px] flex flex-col justify-center items-center"
+      >
+        <input
+          className="self-stretch placeholder-black dark:placeholder-white bg-transparent border border-black dark:border-white rounded-full px-4 h-10 mb-4"
+          type="text"
+          name="username"
+          required
+          placeholder="enter your username"
+        />
+        <button className="btn">submit</button>
+      </form>
     </div>
   );
 };
