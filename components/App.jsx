@@ -1,6 +1,10 @@
 "use client";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
+import dynamic from "next/dynamic";
 import { getTasks } from "@/actions";
+
+const ThemeSwitcher = dynamic(() => import("@/components/ThemeSwitcher"), {
+  ssr: false,
+});
 
 const App = () => {
   return (
