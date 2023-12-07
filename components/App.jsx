@@ -12,10 +12,10 @@ const App = () => {
       <ThemeSwitcher />
       <form
         action={getTasks}
-        className="h-[300px] w-[300px] flex flex-col justify-center items-center"
+        className="flex h-[300px] w-[300px] flex-col items-center justify-center"
       >
         <input
-          className="self-stretch placeholder-black dark:placeholder-white bg-transparent border border-black dark:border-white rounded-full px-4 h-10 mb-4"
+          className="mb-4 h-10 self-stretch rounded-full border border-black bg-transparent px-4 placeholder-black dark:border-white dark:placeholder-white"
           type="text"
           name="username"
           required

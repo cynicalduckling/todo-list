@@ -5,7 +5,7 @@ const ThemeSwitcher = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme")?.length
       ? localStorage.getItem("theme")
-      : "dark"
+      : "dark",
   );
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const ThemeSwitcher = () => {
   };
 
   return (
-    <div className="fixed top-2 left-2" onClick={handleClick}>
+    <div className="fixed left-2 top-2" onClick={handleClick}>
       {theme === "dark" ? (
         <MdDarkMode className="h-10 w-10" />
       ) : (
