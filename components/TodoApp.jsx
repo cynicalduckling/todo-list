@@ -31,7 +31,7 @@ const TodoApp = () => {
       <Tasks className="flex grow-[2] flex-col items-center justify-start gap-8 self-stretch rounded-[30px]">
         <Task
           task={{
-            name: "wash the car",
+            name: "wash the carsds and chicken and cards and chicken and chicken andnashas as as as a s  as  a s  a s a s  as  a s as",
             due_date: Date.now(),
             completed: false,
             category: "personal",
