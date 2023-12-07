@@ -4,10 +4,17 @@
 
 @layer components {
     .btn {
-        @apply self-center h-10 px-3 rounded-full border dark:border-white border-black dark:bg-transparent bg-transparent text-black dark:text-white;
+        @apply self-center h-10 px-3 rounded-full border dark:border-white border-black dark:bg-transparent bg-transparent text-black dark:text-white flex justify-center items-center cursor-pointer;
     }
 
     .checkbox {
         @apply bg-black
     }
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
 }
