@@ -6,4 +6,8 @@
     .btn {
         @apply self-center h-10 px-3 rounded-full border dark:border-white border-black dark:bg-transparent bg-transparent text-black dark:text-white;
     }
+
+    .checkbox {
+        @apply bg-black
+    }
 }

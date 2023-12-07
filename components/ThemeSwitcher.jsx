@@ -7,7 +7,6 @@ const ThemeSwitcher = () => {
       ? localStorage.getItem("theme")
       : "dark",
   );
-
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -25,9 +24,9 @@ const ThemeSwitcher = () => {
   return (
     <div className="fixed left-2 top-2" onClick={handleClick}>
       {theme === "dark" ? (
-        <MdDarkMode className="h-10 w-10" />
+        <MdDarkMode className="h-10 w-10 fill-white" />
       ) : (
-        <MdOutlineLightMode className="h-10 w-10" />
+        <MdOutlineLightMode className="h-10 w-10 stroke-black" />
       )}
     </div>
   );
