@@ -1,17 +1,51 @@
 "use client";
+import { useEffect, useState, useRef } from "react";
 import Task from "@/components/Task";
 import Tasks from "@/components/Tasks";
 import ThemeSwitcher from "./ThemeSwitcher";
-import { usePathname } from "next/navigation";
+import { TypeAnimation } from "react-type-animation";
 
-const TodoApp = () => {
-  const pathname = usePathname();
+const TodoApp = ({ todos, username }) => {
+  const todosSorter = (todo1, todo2) => {
+    return todo1.due_date - todo2.due_date;
+  };
+  todos.sort(todosSorter);
+  const [filter, setFilter] = useState("all");
+  const [search, setSearch] = useState("");
+  const searchCopy = useRef([...todos]);
+  // console.log("search cop ", searchCopy.current);
+
+  if (search.length) {
+    const newTodos = searchCopy.current.filter((todo) => {
+      return todo.name.toLowerCase().includes(search.toLowerCase());
+    });
+    todos = [...newTodos];
+  }
+  console.log("search cop ", searchCopy.current);
+  console.log("todos: ", todos);
+
+  if (filter === "today") {
+    todos = todos.filter((todo) => {
+      return (
+        new Date().toDateString() ===
+        new Date(todo.due_date * 1000).toDateString()
+      );
+    });
+  } else if (filter === "completed") {
+    todos = todos.filter((todo) => {
+      return todo.completed === true;
+    });
+  }
+
   return (
     <>
       <ThemeSwitcher />
-      <div className="flex grow flex-col items-center justify-evenly self-stretch rounded-[30px]">
-        <div className="self-stretch text-center text-3xl font-bold">
-          hello <span className="text-white">{pathname.replace("/", "")}</span>
+      <div className="flex h-[300px] flex-col items-center justify-evenly self-stretch">
+        <div className="self-stretch text-center text-3xl font-bold text-black dark:text-white">
+          hello{" "}
+          <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text  text-transparent">
+            <TypeAnimation sequence={[100, username]} speed={5} />
+          </span>
         </div>
         <div className="flex self-stretch">
           <input
@@ -20,31 +54,38 @@ const TodoApp = () => {
             name="search"
             id="search"
             placeholder="search"
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
         <div className="flex justify-evenly gap-8 self-stretch">
-          <div className="btn flex-1 grow">All</div>
-          <div className="btn flex-1 grow">Today</div>
-          <div className="btn flex-1 grow">Completed</div>
+          <div onClick={() => setFilter("all")} className="btn flex-1 grow">
+            All
+          </div>
+          <div onClick={() => setFilter("today")} className="btn flex-1 grow">
+            Today
+          </div>
+          <div
+            onClick={() => setFilter("completed")}
+            className="btn flex-1 grow"
+          >
+            Completed
+          </div>
         </div>
       </div>
-      <Tasks className="flex grow-[2] flex-col items-center justify-start gap-8 self-stretch rounded-[30px]">
-        <Task
-          task={{
-            name: "wash the carsds and chicken and cards and chicken and chicken andnashas as as as a s  as  a s  a s a s  as  a s as",
-            due_date: Date.now(),
-            completed: false,
-            category: "personal",
-          }}
-        />
-        <Task
-          task={{
-            name: "dance the car",
-            due_date: Date.now(),
-            completed: true,
-            category: "work",
-          }}
-        />
+      <Tasks className="flex grow-[2] flex-col flex-wrap items-center justify-start gap-8 self-stretch lg:flex-row">
+        {todos.map((todo, key) => {
+          return (
+            <Task
+              key={todo._id}
+              task={{
+                name: todo.name,
+                due_date: todo.due_date,
+                completed: todo.completed,
+                category: todo.category,
+              }}
+            />
+          );
+        })}
       </Tasks>
     </>
   );

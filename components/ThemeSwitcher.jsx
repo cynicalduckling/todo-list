@@ -2,11 +2,18 @@ import { useState, useEffect } from "react";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 const ThemeSwitcher = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const [theme, setTheme] = useState(
     localStorage.getItem("theme")?.length
       ? localStorage.getItem("theme")
       : "dark",
   );
+
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
