@@ -5,7 +5,7 @@ import Tasks from "@/components/Tasks";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { TypeAnimation } from "react-type-animation";
 
-const TodoApp = ({ todos, username }) => {
+const TodoApp = ({ todos, username, userid }) => {
   const todosSorter = (todo1, todo2) => {
     return todo1.due_date - todo2.due_date;
   };
@@ -21,8 +21,6 @@ const TodoApp = ({ todos, username }) => {
     });
     todos = [...newTodos];
   }
-  console.log("search cop ", searchCopy.current);
-  console.log("todos: ", todos);
 
   if (filter === "today") {
     todos = todos.filter((todo) => {
@@ -36,6 +34,8 @@ const TodoApp = ({ todos, username }) => {
       return todo.completed === true;
     });
   }
+
+  console.log(todos[1]);
 
   return (
     <>
@@ -73,10 +73,13 @@ const TodoApp = ({ todos, username }) => {
         </div>
       </div>
       <Tasks className="flex grow-[2] flex-col flex-wrap items-center justify-start gap-8 self-stretch lg:flex-row">
-        {todos.map((todo, key) => {
+        {todos.map((todo) => {
+          // console.log(todo._id);
           return (
             <Task
+              userid={userid}
               key={todo._id}
+              taskId={todo._id}
               task={{
                 name: todo.name,
                 due_date: todo.due_date,
