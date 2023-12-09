@@ -1,9 +1,11 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import Task from "@/components/Task";
 import Tasks from "@/components/Tasks";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { TypeAnimation } from "react-type-animation";
+import { IoMdAddCircle } from "react-icons/io";
+import AddTask from "./AddTask";
 
 const TodoApp = ({ todos, username, userid }) => {
   const todosSorter = (todo1, todo2) => {
@@ -13,7 +15,7 @@ const TodoApp = ({ todos, username, userid }) => {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const searchCopy = useRef([...todos]);
-  // console.log("search cop ", searchCopy.current);
+  const [add, setAdd] = useState(true);
 
   if (search.length) {
     const newTodos = searchCopy.current.filter((todo) => {
@@ -35,14 +37,18 @@ const TodoApp = ({ todos, username, userid }) => {
     });
   }
 
-  console.log(todos[1]);
-
   return (
     <>
       <ThemeSwitcher />
-      <div className="flex h-[300px] flex-col items-center justify-evenly self-stretch">
-        <div className="self-stretch text-center text-3xl font-bold text-black dark:text-white">
-          hello{" "}
+      <div className="flex h-[170px] min-w-[350px] max-w-[700px] flex-col items-center justify-between self-stretch ">
+        <div className="flex justify-center gap-2 self-stretch text-center text-3xl font-bold text-black dark:text-white">
+          <IoMdAddCircle
+            onClick={() => {
+              setAdd(!add);
+            }}
+            className="h-10 w-10 fill-black dark:fill-white"
+          />
+          hello
           <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text  text-transparent">
             <TypeAnimation sequence={[100, username]} speed={5} />
           </span>
@@ -57,7 +63,7 @@ const TodoApp = ({ todos, username, userid }) => {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        <div className="flex justify-evenly gap-8 self-stretch">
+        <div className="flex justify-evenly gap-8 self-stretch ">
           <div onClick={() => setFilter("all")} className="btn flex-1 grow">
             All
           </div>
@@ -72,9 +78,9 @@ const TodoApp = ({ todos, username, userid }) => {
           </div>
         </div>
       </div>
-      <Tasks className="flex grow-[2] flex-col flex-wrap items-center justify-start gap-8 self-stretch lg:flex-row">
+      {add && <AddTask userid={userid} setAdd={setAdd} />}
+      <Tasks className="flex grow-[2] flex-col flex-wrap items-center justify-start gap-8 self-stretch">
         {todos.map((todo) => {
-          // console.log(todo._id);
           return (
             <Task
               userid={userid}
