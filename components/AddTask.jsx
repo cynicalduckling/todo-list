@@ -7,7 +7,7 @@ const AddTask = ({ userid, setAdd }) => {
   return (
     <form
       action={addTaskUser}
-      className="flex max-w-[700px] flex-col flex-wrap items-center justify-between gap-4 self-stretch rounded-xl bg-gradient-to-r from-green-300 to-purple-400 px-4 py-4 lg:flex-row lg:items-center"
+      className="flex min-w-[330px] max-w-[700px] flex-col flex-wrap items-center justify-between gap-4 rounded-xl bg-gradient-to-r from-green-300 to-purple-400 px-4 py-4 lg:flex-row lg:items-center"
     >
       <div className="flex items-center gap-4 self-stretch">
         <FaCircleXmark

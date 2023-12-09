@@ -36,12 +36,11 @@ const TodoApp = ({ todos, username, userid }) => {
       return todo.completed === true;
     });
   }
-
   return (
-    <>
+    <div className="flex grow flex-col gap-6">
       <ThemeSwitcher />
-      <div className="flex h-[170px] min-w-[350px] max-w-[700px] flex-col items-center justify-between self-stretch ">
-        <div className="flex justify-center gap-2 self-stretch text-center text-3xl font-bold text-black dark:text-white">
+      <div className="flex h-[170px] min-w-[330px] max-w-[700px] flex-col items-center justify-between self-stretch border">
+        <div className="flex justify-center gap-2 text-center text-3xl font-bold text-black dark:text-white">
           <IoMdAddCircle
             onClick={() => {
               setAdd(!add);
@@ -55,7 +54,7 @@ const TodoApp = ({ todos, username, userid }) => {
         </div>
         <div className="flex self-stretch">
           <input
-            className="search flex h-10 grow place-content-center rounded-full bg-white px-8 text-black placeholder:text-center dark:border dark:border-white dark:bg-transparent dark:text-white dark:placeholder-white"
+            className="search flex h-10 grow place-content-center self-stretch rounded-full bg-white px-8 text-black placeholder:text-center dark:border dark:border-white dark:bg-transparent dark:text-white dark:placeholder-white"
             type="search"
             name="search"
             id="search"
@@ -63,7 +62,7 @@ const TodoApp = ({ todos, username, userid }) => {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        <div className="flex justify-evenly gap-8 self-stretch ">
+        <div className="flex justify-evenly gap-8 self-stretch">
           <div onClick={() => setFilter("all")} className="btn flex-1 grow">
             All
           </div>
@@ -78,8 +77,8 @@ const TodoApp = ({ todos, username, userid }) => {
           </div>
         </div>
       </div>
-      {add && <AddTask userid={userid} setAdd={setAdd} />}
-      <Tasks className="flex grow-[2] flex-col flex-wrap items-center justify-start gap-8 self-stretch">
+      <div>{add && <AddTask userid={userid} setAdd={setAdd} />}</div>
+      <Tasks className="flex flex-col items-center gap-6 self-stretch border md:flex-wrap">
         {todos.map((todo) => {
           return (
             <Task
@@ -96,7 +95,7 @@ const TodoApp = ({ todos, username, userid }) => {
           );
         })}
       </Tasks>
-    </>
+    </div>
   );
 };
 
