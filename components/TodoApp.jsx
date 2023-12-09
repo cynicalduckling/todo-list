@@ -46,9 +46,9 @@ const TodoApp = ({ todos, username, userid }) => {
   }
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex grow flex-col items-center justify-start gap-6">
       <ThemeSwitcher />
-      <div className="flex items-center justify-center gap-2 text-center text-2xl font-bold text-black dark:text-white">
+      <div className="flex items-center gap-2 text-center text-2xl font-bold text-black dark:text-white">
         <IoMdAddCircle
           onClick={() => {
             setAdd(!add);
@@ -60,7 +60,7 @@ const TodoApp = ({ todos, username, userid }) => {
           <TypeAnimation sequence={[100, username]} speed={5} />
         </span>
       </div>
-      <div className=" flex max-h-[130px] min-w-[330px] max-w-[700px] flex-col gap-6 self-stretch md:w-[600px] md:self-auto">
+      <div className=" flex min-w-[330px] max-w-[700px] flex-col gap-6 self-stretch md:w-[600px] md:self-auto">
         <div className="flex self-stretch">
           <input
             className="search flex h-10 grow place-content-center self-stretch rounded-full bg-white px-8 text-black placeholder:text-center dark:border dark:border-white dark:bg-transparent dark:text-white dark:placeholder-white"
@@ -95,8 +95,8 @@ const TodoApp = ({ todos, username, userid }) => {
           </div>
         </div>
       </div>
-      <div>{add && <AddTask userid={userid} setAdd={setAdd} />}</div>
-      <Tasks className="flex min-w-[330px] flex-col items-center gap-6 md:flex-row  md:flex-wrap md:justify-evenly">
+      {add && <AddTask userid={userid} setAdd={setAdd} />}
+      <Tasks className="mt-2 flex min-w-[330px] flex-col items-center gap-6 md:flex-row md:flex-wrap md:justify-evenly">
         {todos.map((todo) => {
           return (
             <Task

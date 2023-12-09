@@ -29,5 +29,5 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 * {
-    transition: all 1s ease;
+    transition: all 750ms ease;
 }

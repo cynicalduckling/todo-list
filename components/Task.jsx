@@ -40,7 +40,7 @@ const Task = ({ task, taskId, userid }) => {
   console.log(taskDetails.category);
 
   return (
-    <div className="flex justify-between gap-4 self-stretch rounded-xl bg-white p-4 shadow-sm shadow-black dark:bg-transparent dark:shadow-none md:min-w-[355px] md:max-w-[35%]">
+    <div className="flex justify-between gap-4 self-stretch rounded-xl bg-white p-4 shadow-sm shadow-black dark:bg-transparent dark:p-0 dark:shadow-none md:min-w-[355px] md:max-w-[35%]">
       <div className="flex flex-col gap-1">
         <div className="grow rounded-xl bg-black dark:bg-white"></div>
         <div
