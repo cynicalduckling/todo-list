@@ -15,8 +15,13 @@ export const getTasks = async (formData) => {
     redirect(`/${user._id}`)
 }
 
-export const deleteTask = async (taskId, userid) => {
+export const deleteTask = async (taskId, userid, completed) => {
     const task = await Task.findByIdAndDelete(taskId)
     revalidatePath(`${userid}`)
+}
+
+export const completeTask = async (todo) => {
+    const task = await Task.findByIdAndUpdate(todo.taskId, { completed: todo.completed })
+    revalidatePath(`${todo.userid}`)
 }
 
