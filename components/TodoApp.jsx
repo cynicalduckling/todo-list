@@ -48,19 +48,19 @@ const TodoApp = ({ todos, username, userid }) => {
   return (
     <div className="flex flex-col items-center gap-6">
       <ThemeSwitcher />
-      <div className=" flex min-h-[170px] min-w-[330px] max-w-[700px] flex-col gap-6 self-stretch md:w-[600px] md:self-auto">
-        <div className="flex justify-center gap-2 text-center text-3xl font-bold text-black dark:text-white">
-          <IoMdAddCircle
-            onClick={() => {
-              setAdd(!add);
-            }}
-            className="h-10 w-10 fill-black dark:fill-white"
-          />
-          hello
-          <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text  text-transparent">
-            <TypeAnimation sequence={[100, username]} speed={5} />
-          </span>
-        </div>
+      <div className="flex items-center justify-center gap-2 text-center text-2xl font-bold text-black dark:text-white">
+        <IoMdAddCircle
+          onClick={() => {
+            setAdd(!add);
+          }}
+          className="h-10 w-10 fill-black dark:fill-white"
+        />
+        hello
+        <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text  text-transparent">
+          <TypeAnimation sequence={[100, username]} speed={5} />
+        </span>
+      </div>
+      <div className=" flex max-h-[130px] min-w-[330px] max-w-[700px] flex-col gap-6 self-stretch md:w-[600px] md:self-auto">
         <div className="flex self-stretch">
           <input
             className="search flex h-10 grow place-content-center self-stretch rounded-full bg-white px-8 text-black placeholder:text-center dark:border dark:border-white dark:bg-transparent dark:text-white dark:placeholder-white"

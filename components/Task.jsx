@@ -120,13 +120,13 @@ const Task = ({ task, taskId, userid }) => {
               setPulse(false);
             }
           }}
-          className={`h-6 w-6 fill-black stroke-black dark:fill-white
+          className={`h-5 w-5 fill-black stroke-black dark:fill-white
         dark:stroke-white ${pulse && "animate-bounce"}`}
         />
         <div className="grow self-stretch rounded-xl bg-black dark:bg-white"></div>
         <FaCircleXmark
           onClick={() => deleteTask(taskId, userid)}
-          className="h-6 w-6 fill-black dark:fill-white"
+          className="h-5 w-5 fill-black dark:fill-white"
         />
       </div>
     </div>

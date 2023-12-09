@@ -1,26 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 const ThemeSwitcher = () => {
-  const [isClient, setIsClient] = useState(false);
+  let localTheme = useRef(new Date().getHours() > 18 ? "dark" : "light");
 
   useEffect(() => {
-    setIsClient(true);
+    localTheme.current = localStorage.getItem("theme")?.length
+      ? localStorage.getItem("theme")
+      : "dark";
   }, []);
 
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme")?.length
-      ? localStorage.getItem("theme")
-      : "dark",
-  );
+  const [theme, setTheme] = useState(localTheme.current);
 
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
     }
   }, [theme]);
 
