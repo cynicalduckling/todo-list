@@ -1,4 +1,3 @@
-import { tasks } from "@/lib/tasks";
 import Task from "./Task";
 
 const Tasks = ({ className, children }) => {

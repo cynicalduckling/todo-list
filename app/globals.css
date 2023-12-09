@@ -8,11 +8,15 @@
     }
 
     .btn-addtask {
-        @apply self-center h-10 px-4 rounded-full border border-black bg-transparent text-black flex justify-center items-center cursor-pointer;
+        @apply self-center h-10 rounded-full bg-transparent text-black flex justify-center items-center cursor-pointer;
     }
 
     .checkbox {
         @apply bg-black;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        @apply dark:invert
     }
 
 }

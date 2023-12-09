@@ -15,12 +15,14 @@ const Todo = async ({ params }) => {
   }
 
   return (
-    <main className="flex max-w-[1400px] items-center justify-center gap-8 border bg-gradient-to-tl from-pink-300 via-purple-300 to-indigo-400 px-8 py-12 dark:bg-gradient-to-t dark:from-gray-700 dark:via-gray-900 dark:to-black">
-      <TodoApp
-        todos={todos.tasks}
-        username={todos.username}
-        userid={params.userid}
-      />
+    <main className="flex min-h-screen min-w-full items-center justify-center gap-8 bg-gradient-to-r from-teal-200 to-lime-200 px-8 py-12  dark:bg-gradient-to-t dark:from-gray-700 dark:via-gray-900 dark:to-black">
+      <section className="max-w-[1400px]">
+        <TodoApp
+          todos={todos.tasks}
+          username={todos.username}
+          userid={params.userid}
+        />
+      </section>
     </main>
   );
 };

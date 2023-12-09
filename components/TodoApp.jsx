@@ -15,7 +15,7 @@ const TodoApp = ({ todos, username, userid }) => {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const searchCopy = useRef([...todos]);
-  const [add, setAdd] = useState(true);
+  const [add, setAdd] = useState(false);
 
   if (search.length) {
     const newTodos = searchCopy.current.filter((todo) => {
@@ -35,11 +35,20 @@ const TodoApp = ({ todos, username, userid }) => {
     todos = todos.filter((todo) => {
       return todo.completed === true;
     });
+  } else if (filter === "work") {
+    todos = todos.filter((todo) => {
+      return todo.category === "work";
+    });
+  } else if (filter === "personal") {
+    todos = todos.filter((todo) => {
+      return todo.category === "personal";
+    });
   }
+
   return (
-    <div className="flex grow flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-6">
       <ThemeSwitcher />
-      <div className="flex h-[170px] min-w-[330px] max-w-[500px] flex-col items-center justify-between border">
+      <div className=" flex min-h-[170px] min-w-[330px] max-w-[700px] flex-col gap-6 self-stretch md:w-[600px] md:self-auto">
         <div className="flex justify-center gap-2 text-center text-3xl font-bold text-black dark:text-white">
           <IoMdAddCircle
             onClick={() => {
@@ -62,7 +71,7 @@ const TodoApp = ({ todos, username, userid }) => {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        <div className="flex justify-evenly gap-8 self-stretch">
+        <div className="flex flex-wrap justify-evenly gap-4 self-stretch md:flex-nowrap">
           <div onClick={() => setFilter("all")} className="btn flex-1 grow">
             All
           </div>
@@ -75,10 +84,19 @@ const TodoApp = ({ todos, username, userid }) => {
           >
             Completed
           </div>
+          <div
+            onClick={() => setFilter("personal")}
+            className="btn flex-1 grow"
+          >
+            Personal
+          </div>
+          <div onClick={() => setFilter("work")} className="btn flex-1 grow">
+            Work
+          </div>
         </div>
       </div>
       <div>{add && <AddTask userid={userid} setAdd={setAdd} />}</div>
-      <Tasks className="flex flex-col items-center gap-6 self-stretch md:flex-row md:flex-wrap md:justify-evenly">
+      <Tasks className="flex min-w-[330px] flex-col items-center gap-6 md:flex-row  md:flex-wrap md:justify-evenly">
         {todos.map((todo) => {
           return (
             <Task

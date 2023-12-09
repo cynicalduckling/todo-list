@@ -1,5 +1,5 @@
 import { addTask } from "@/actions";
-import { MdOutlineCloseFullscreen } from "react-icons/md";
+import { IoMdAddCircle } from "react-icons/io";
 import { FaCircleXmark } from "react-icons/fa6";
 
 const AddTask = ({ userid, setAdd }) => {
@@ -7,40 +7,41 @@ const AddTask = ({ userid, setAdd }) => {
   return (
     <form
       action={addTaskUser}
-      className="flex min-w-[330px] max-w-[700px] flex-col flex-wrap items-center justify-between gap-4 rounded-xl bg-gradient-to-r from-green-300 to-purple-400 px-4 py-4 md:flex-row lg:items-center"
+      onSubmit={() => {
+        setAdd(false);
+      }}
+      className="lg:items-cente flex min-w-[330px] flex-col flex-wrap justify-between gap-4 self-stretch rounded-xl bg-gradient-to-r from-lime-200 via-green-200 to-teal-200 px-4 py-4 shadow-sm shadow-black md:w-[700px] md:flex-row md:justify-between md:gap-4"
     >
-      <div className="flex items-center gap-4 self-stretch">
+      <div className=" flex items-center justify-between gap-2">
         <FaCircleXmark
           onClick={() => {
             setAdd(false);
           }}
-          className="h-6 w-6  fill-white "
+          className="h-6 w-6 dark:fill-black"
         />
         <input
           type="text"
           name="name"
-          className="flex h-10 grow place-content-center justify-between self-stretch rounded-full border border-black bg-transparent px-4 text-black placeholder:text-center placeholder:text-black"
+          className="flex h-10 basis-1 place-content-center justify-between rounded-full border border-black bg-transparent px-4 text-black placeholder:text-center placeholder:text-black"
           placeholder="enter task"
         />
       </div>
-      <div className="flex justify-between gap-2 self-stretch">
+      <div className="flex justify-between md:grow">
         <input
           type="date"
           name="due_date"
-          className="flex flex-1 grow justify-between rounded-full bg-transparent text-black"
-          onChange={null}
+          className="rounded-full bg-transparent text-black"
         />
         <select
-          className="flex-1 bg-transparent text-center text-black"
+          className="bg-transparent text-center text-black"
           name="category"
           defaultValue="personal"
-          onChange={null}
         >
           <option value="personal">Personal</option>
           <option value="work">Work</option>
         </select>
         <button type="submit" className="btn-addtask">
-          add
+          <IoMdAddCircle className="h-7 w-7" />
         </button>
       </div>
     </form>
