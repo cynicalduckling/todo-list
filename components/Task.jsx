@@ -56,7 +56,7 @@ const Task = ({ task, taskId, userid }) => {
         </div>
         <div className="grow rounded-xl bg-black dark:bg-white"></div>
       </div>
-      <form className="flex grow flex-col flex-wrap items-center gap-2 sm:items-center md:items-start">
+      <form className="flex grow flex-col items-center gap-2 sm:items-center md:items-start">
         <input
           type="text"
           className="flex break-normal bg-transparent font-bold text-black dark:text-white"

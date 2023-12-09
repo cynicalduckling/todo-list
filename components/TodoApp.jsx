@@ -37,9 +37,9 @@ const TodoApp = ({ todos, username, userid }) => {
     });
   }
   return (
-    <div className="flex grow flex-col gap-6">
+    <div className="flex grow flex-col items-center gap-6">
       <ThemeSwitcher />
-      <div className="flex h-[170px] min-w-[330px] max-w-[700px] flex-col items-center justify-between self-stretch border">
+      <div className="flex h-[170px] min-w-[330px] max-w-[500px] flex-col items-center justify-between border">
         <div className="flex justify-center gap-2 text-center text-3xl font-bold text-black dark:text-white">
           <IoMdAddCircle
             onClick={() => {
@@ -78,7 +78,7 @@ const TodoApp = ({ todos, username, userid }) => {
         </div>
       </div>
       <div>{add && <AddTask userid={userid} setAdd={setAdd} />}</div>
-      <Tasks className="flex flex-col items-center gap-6 self-stretch border md:flex-wrap">
+      <Tasks className="flex flex-col items-center gap-6 self-stretch md:flex-row md:flex-wrap md:justify-evenly">
         {todos.map((todo) => {
           return (
             <Task

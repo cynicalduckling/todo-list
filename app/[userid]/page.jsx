@@ -3,7 +3,6 @@
 import TodoApp from "@/components/TodoApp";
 
 const Todo = async ({ params }) => {
-  // console.log("params ---->", params);
   let todos = [];
   const url =
     "http://127.0.0.1:3000" +
@@ -16,7 +15,7 @@ const Todo = async ({ params }) => {
   }
 
   return (
-    <main className="flex max-w-[1450px] items-center justify-center gap-8 border bg-gradient-to-tl from-pink-300 via-purple-300 to-indigo-400 px-8 py-12 dark:bg-gradient-to-t dark:from-gray-700 dark:via-gray-900 dark:to-black">
+    <main className="flex max-w-[1400px] items-center justify-center gap-8 border bg-gradient-to-tl from-pink-300 via-purple-300 to-indigo-400 px-8 py-12 dark:bg-gradient-to-t dark:from-gray-700 dark:via-gray-900 dark:to-black">
       <TodoApp
         todos={todos.tasks}
         username={todos.username}
