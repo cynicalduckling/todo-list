@@ -4,8 +4,11 @@ import { redirect } from "next/navigation";
 import User from "@/models/user";
 import Task from "@/models/task";
 import { revalidatePath } from "next/cache";
+import dbConnect from "@/utils/mongoConnect";
+
 
 export const getTasks = async (formData) => {
+    await dbConnect();
     console.log("running the server action")
     const username = formData.get("username")
     console.log("got the form data")
@@ -18,21 +21,25 @@ export const getTasks = async (formData) => {
 }
 
 export const deleteTask = async (taskId, userid, completed) => {
+    await dbConnect();
     const task = await Task.findByIdAndDelete(taskId)
     revalidatePath(`/${userid}`)
 }
 
 export const completeTask = async (todo) => {
+    await dbConnect();
     const task = await Task.findByIdAndUpdate(todo.taskId, { completed: todo.completed })
     revalidatePath(`/${todo.userid}`)
 }
 
 export const updateTask = async ({ taskId, name, category, due_date, userid }) => {
+    await dbConnect();
     const task = await Task.findByIdAndUpdate(taskId, { name, category, due_date })
     revalidatePath(`/${userid}`)
 }
 
 export const addTask = async (userid, formData) => {
+    await dbConnect();
     console.log(userid)
     const task = {
         name: formData.get("name"),
