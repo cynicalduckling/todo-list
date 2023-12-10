@@ -6,7 +6,8 @@ const Todo = async ({ params }) => {
   let todos = [];
   console.log(
     "first log",
-    "http://" + process.env.HOST || "https://" + process.env.VERCEL_URL,
+    "http://" + process.env.HOST ||
+      "https://" + process.env.NEXT_PUBLIC_VERCEL_URL,
   );
   const url =
     ("http://" + process.env.HOST || "https://" + process.env.VERCEL_URL) +

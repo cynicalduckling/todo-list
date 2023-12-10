@@ -10,7 +10,7 @@ const AddTask = ({ userid, setAdd }) => {
       onSubmit={() => {
         setAdd(false);
       }}
-      className="lg:items-cente flex min-w-[330px] flex-col flex-wrap justify-between gap-4 self-stretch rounded-xl bg-gradient-to-r from-lime-200 via-green-200 to-teal-200 px-4 py-4 shadow-sm shadow-black md:w-[700px] md:flex-row md:justify-between md:gap-4"
+      className="lg:items-cente flex min-w-[330px] flex-col flex-wrap justify-between gap-4 rounded-xl bg-gradient-to-r from-lime-200 via-green-200 to-teal-200 px-4 py-4 shadow-sm shadow-black md:w-[700px] md:flex-row md:justify-between md:gap-4"
     >
       <div className=" flex items-center justify-between gap-2">
         <FaCircleXmark
