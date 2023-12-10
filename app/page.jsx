@@ -1,5 +1,4 @@
 import App from "@/components/App";
-import mongoose from "mongoose";
 
 export default function Home() {
   return (

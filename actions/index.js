@@ -6,7 +6,10 @@ import Task from "@/models/task";
 import { revalidatePath } from "next/cache";
 
 export const getTasks = async (formData) => {
+    console.log("running the server action")
     const username = formData.get("username")
+    console.log("got the form data")
+    console.log("starting mongo calls")
     let user = await User.findOne({ username: username })
     if (!user) {
         user = await User.create({ username: username })
