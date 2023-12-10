@@ -4,13 +4,10 @@ import TodoApp from "@/components/TodoApp";
 
 const Todo = async ({ params }) => {
   let todos = [];
-  console.log(
-    "first log",
-    "http://" + process.env.HOST ||
-      "https://" + process.env.NEXT_PUBLIC_VERCEL_URL,
-  );
+  const localhost = process.env.HOST;
+  const vercel = process.env.VERCEL_URL;
   const url =
-    ("http://" + process.env.HOST || "https://" + process.env.VERCEL_URL) +
+    (localhost.length ? "http://" + localhost : "https://" + vercel) +
     "/api/tasks?" +
     new URLSearchParams({ userid: params.userid });
   console.log("fullurl ---->  ", url);
