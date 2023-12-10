@@ -96,7 +96,7 @@ const TodoApp = ({ todos, username, userid }) => {
         </div>
       </div>
       {add && <AddTask userid={userid} setAdd={setAdd} />}
-      <Tasks className="mt-2 flex min-w-[330px] flex-col items-center gap-6 md:flex-row md:flex-wrap md:justify-evenly">
+      <Tasks className="mt-2 flex min-w-[330px] flex-col items-center gap-6 pb-6 md:flex-row md:flex-wrap md:justify-evenly">
         {todos.map((todo) => {
           return (
             <Task
