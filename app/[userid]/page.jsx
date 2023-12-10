@@ -6,8 +6,9 @@ const Todo = async ({ params }) => {
   let todos = [];
   const localhost = process.env.HOST;
   const vercel = process.env.VERCEL_URL;
+  console.log("vercel url:    ", vercel);
   const url =
-    (localhost.length ? "http://" + localhost : "https://" + vercel) +
+    (localhost ? "http://" + localhost : "https://" + vercel) +
     "/api/tasks?" +
     new URLSearchParams({ userid: params.userid });
   console.log("fullurl ---->  ", url);
