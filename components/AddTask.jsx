@@ -30,6 +30,7 @@ const AddTask = ({ userid, setAdd }) => {
         <input
           type="date"
           name="due_date"
+          defaultValue={new Date().toLocaleDateString("en-CA")}
           className="rounded-full bg-transparent text-black"
         />
         <select

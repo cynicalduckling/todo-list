@@ -13,11 +13,14 @@ export const getOrCreateUser = async (username) => {
     if (!usernameCheck.success) {
         return { "error": usernameCheck.error.issues.map((issue) => issue.message).join(" and ") }
     }
+    console.log("getOrCreateUser action: username validation passed")
     await dbConnect();
+    console.log("getOrCreateUser action: checkng if user exists")
     let user = await User.findOne({ username: username })
 
     if (!user) {
         user = await User.create({ username: username })
+        console.log("getOrCreateUser action: user doesnt exist. crerating new user")
     }
     redirect(`/${user._id}`)
 }

@@ -6,6 +6,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import { TypeAnimation } from "react-type-animation";
 import { IoMdAddCircle } from "react-icons/io";
 import AddTask from "./AddTask";
+import HomeIcon from "./HomeIcon";
 
 const TodoApp = ({ todos, username, userid }) => {
   const todosSorter = (todo1, todo2) => {
@@ -48,6 +49,7 @@ const TodoApp = ({ todos, username, userid }) => {
   return (
     <div className="flex grow flex-col items-center justify-start gap-6">
       <ThemeSwitcher />
+      <HomeIcon />
       <div className="flex items-center gap-2 text-center text-2xl font-bold text-black dark:text-white">
         <IoMdAddCircle
           onClick={() => {

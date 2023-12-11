@@ -10,15 +10,16 @@ const App = () => {
   const [error, setError] = useState(null);
 
   const validateUser = async (formData) => {
+    //client side validation for username
     const username = formData.get("username");
     const usernameCheck = UsernameSchema.safeParse(username);
     if (!usernameCheck.success) {
+      setLoading(false);
       setError(
         usernameCheck.error.issues.map((issue) => issue.message).join(" and "),
       );
     } else {
       setError(null);
-      setLoading(true);
       const response = await getOrCreateUser(usernameCheck.data);
 
       response?.error && setError(response.error);
@@ -33,6 +34,9 @@ const App = () => {
       </div>
       <form
         action={validateUser}
+        onSubmit={() => {
+          setLoading(true);
+        }}
         className="flex w-[300px] flex-col items-center justify-center"
       >
         <input
