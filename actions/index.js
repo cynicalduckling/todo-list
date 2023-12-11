@@ -33,7 +33,9 @@ export const deleteTask = async (taskId, userid, completed) => {
 
 export const completeTask = async (todo) => {
     await dbConnect();
+    console.log(todo)
     const task = await Task.findByIdAndUpdate(todo.taskId, { completed: todo.completed })
+    console.log(task)
     revalidatePath(`/${todo.userid}`)
 }
 

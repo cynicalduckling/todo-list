@@ -13,12 +13,12 @@ const TodoApp = ({ todos, username, userid }) => {
     return todo1.due_date - todo2.due_date;
   };
   todos.sort(todosSorter);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("");
   const [search, setSearch] = useState("");
   const searchCopy = useRef([...todos]);
   const [add, setAdd] = useState(false);
 
-  if (search.length) {
+  if (search.length > 2) {
     const newTodos = searchCopy.current.filter((todo) => {
       return todo.name.toLowerCase().includes(search.toLowerCase());
     });
@@ -44,6 +44,8 @@ const TodoApp = ({ todos, username, userid }) => {
     todos = todos.filter((todo) => {
       return todo.category === "personal";
     });
+  } else if (filter === "all") {
+    todos = [...searchCopy.current];
   }
 
   return (
