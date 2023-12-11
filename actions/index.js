@@ -5,11 +5,14 @@ import User from "@/models/user";
 import Task from "@/models/task";
 import { revalidatePath } from "next/cache";
 import dbConnect from "@/utils/mongoConnect";
-import { UsernameSchema } from "@/components/App"
+import { UsernameSchema } from "@/models/zodschemas"
 
 
 export const getOrCreateUser = async (username) => {
-
+    const usernameCheck = UsernameSchema.safeParse(username);
+    if (!usernameCheck.success) {
+        return { "error": usernameCheck.error.issues.map((issue) => issue.message).join(" and ") }
+    }
     await dbConnect();
     let user = await User.findOne({ username: username })
 

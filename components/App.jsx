@@ -2,16 +2,8 @@
 import { getOrCreateUser } from "@/actions";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useState } from "react";
-import { z } from "zod";
 import ThemeSwitcher from "./ThemeSwitcher";
-
-const UsernameSchema = z
-  .string()
-  .trim()
-  .min(3, "username should be 3 characters minimum")
-  .max(10, "username should be 10 characters maximum")
-  .toLowerCase()
-  .refine((s) => !s.includes(" "), "avoid using spaces in your username");
+import { UsernameSchema } from "@/models/zodschemas";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -27,7 +19,9 @@ const App = () => {
     } else {
       setError(null);
       setLoading(true);
-      await getOrCreateUser(usernameCheck.data);
+      const response = await getOrCreateUser(usernameCheck.data);
+
+      response?.error && setError(response.error);
     }
   };
 
@@ -45,7 +39,6 @@ const App = () => {
           className="mb-4 h-10 self-stretch rounded-full border border-black bg-transparent px-4 lowercase placeholder-black dark:border-white dark:placeholder-white"
           type="text"
           name="username"
-          required
           placeholder="enter your username"
         />
         <button className="btn">
