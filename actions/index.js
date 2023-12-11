@@ -9,10 +9,7 @@ import dbConnect from "@/utils/mongoConnect";
 
 export const getTasks = async (formData) => {
     await dbConnect();
-    console.log("running the server action")
     const username = formData.get("username")
-    console.log("got the form data")
-    console.log("starting mongo calls")
     let user = await User.findOne({ username: username })
     if (!user) {
         user = await User.create({ username: username })
@@ -40,7 +37,6 @@ export const updateTask = async ({ taskId, name, category, due_date, userid }) =
 
 export const addTask = async (userid, formData) => {
     await dbConnect();
-    console.log(userid)
     const task = {
         name: formData.get("name"),
         due_date: Date.parse(formData.get("due_date")),

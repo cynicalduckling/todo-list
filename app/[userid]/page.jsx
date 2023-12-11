@@ -6,12 +6,10 @@ const Todo = async ({ params }) => {
   let todos = [];
   const localhost = process.env.HOST;
   const vercel = process.env.VERCEL_URL;
-  console.log("vercel url:    ", vercel);
   const url =
     (localhost ? "http://" + localhost : "https://" + vercel) +
     "/api/tasks?" +
     new URLSearchParams({ userid: params.userid });
-  console.log("fullurl ---->  ", url);
   if (params.userid !== "favicon.ico") {
     const res = await fetch(url, { method: "GET", cache: "no-cache" });
     todos = await res.json();
