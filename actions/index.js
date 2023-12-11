@@ -5,12 +5,14 @@ import User from "@/models/user";
 import Task from "@/models/task";
 import { revalidatePath } from "next/cache";
 import dbConnect from "@/utils/mongoConnect";
+import { UsernameSchema } from "@/components/App"
 
 
-export const getTasks = async (formData) => {
+export const getOrCreateUser = async (username) => {
+
     await dbConnect();
-    const username = formData.get("username")
     let user = await User.findOne({ username: username })
+
     if (!user) {
         user = await User.create({ username: username })
     }

@@ -1,21 +1,48 @@
 "use client";
-import { getTasks } from "@/actions";
-import ThemeSwitcher from "./ThemeSwitcher";
+import { getOrCreateUser } from "@/actions";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useState } from "react";
+import { z } from "zod";
+import ThemeSwitcher from "./ThemeSwitcher";
+
+const UsernameSchema = z
+  .string()
+  .trim()
+  .min(3, "username should be 3 characters minimum")
+  .max(10, "username should be 10 characters maximum")
+  .toLowerCase()
+  .refine((s) => !s.includes(" "), "avoid using spaces in your username");
 
 const App = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const validateUser = async (formData) => {
+    const username = formData.get("username");
+    const usernameCheck = UsernameSchema.safeParse(username);
+    if (!usernameCheck.success) {
+      setError(
+        usernameCheck.error.issues.map((issue) => issue.message).join(" and "),
+      );
+    } else {
+      setError(null);
+      setLoading(true);
+      await getOrCreateUser(usernameCheck.data);
+    }
+  };
+
   return (
-    <div className="dark:text-white">
+    <div className=" dark:text-white">
       <ThemeSwitcher />
+      <div className="min-h-4 mb-2 max-w-[300px] flex-wrap text-center text-sm lowercase text-red-500">
+        {error && error}
+      </div>
       <form
-        action={getTasks}
-        onSubmit={() => setLoading(true)}
-        className="flex h-[300px] w-[300px] flex-col items-center justify-center"
+        action={validateUser}
+        className="flex w-[300px] flex-col items-center justify-center"
       >
         <input
-          className="mb-4 h-10 self-stretch rounded-full border border-black bg-transparent px-4 placeholder-black dark:border-white dark:placeholder-white"
+          className="mb-4 h-10 self-stretch rounded-full border border-black bg-transparent px-4 lowercase placeholder-black dark:border-white dark:placeholder-white"
           type="text"
           name="username"
           required

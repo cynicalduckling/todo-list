@@ -38,7 +38,7 @@ const Task = ({ task, taskId, userid }) => {
   }, [completed]);
 
   return (
-    <div className="flex justify-between gap-4 self-stretch rounded-xl bg-white p-4 shadow-sm shadow-black dark:bg-transparent dark:p-0 dark:shadow-none md:min-w-[355px] md:max-w-[35%]">
+    <div className="flex min-w-[330px] justify-between gap-4 self-stretch rounded-xl bg-white p-4 shadow-sm shadow-black dark:bg-black dark:shadow-white md:min-w-[355px] md:max-w-[35%]">
       <div className="flex flex-col gap-1">
         <div className="grow rounded-xl bg-black dark:bg-white"></div>
         <div
@@ -57,7 +57,7 @@ const Task = ({ task, taskId, userid }) => {
         </div>
         <div className="grow rounded-xl bg-black dark:bg-white"></div>
       </div>
-      <form className="flex grow flex-col items-start justify-evenly gap-2 ">
+      <form className="flex flex-col items-start justify-evenly gap-2 ">
         <TextareaAutosize
           type="text"
           className="flex h-auto break-words bg-transparent font-bold text-black dark:text-white"
@@ -67,11 +67,11 @@ const Task = ({ task, taskId, userid }) => {
             setPulse(true);
           }}
         />
-        <div className="flex max-w-[300px] justify-start">
+        <div className="flex justify-start gap-3">
           <input
             type="date"
             value={new Date(taskDetails.due_date).toLocaleDateString("en-CA")}
-            className="flex flex-1 grow justify-between bg-transparent text-black dark:text-white"
+            className="flex w-[120px] justify-between bg-transparent text-black dark:text-white"
             onChange={(e) => {
               setTaskDetails({
                 ...taskDetails,
@@ -80,7 +80,7 @@ const Task = ({ task, taskId, userid }) => {
               setPulse(true);
             }}
           />
-          <div className="flex-1 grow text-right">
+          <div className="text-right">
             <select
               name="category"
               className="bg-transparent text-black dark:text-white"
