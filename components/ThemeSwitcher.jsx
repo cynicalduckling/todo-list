@@ -2,21 +2,19 @@ import { useState, useEffect, useRef } from "react";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 const ThemeSwitcher = () => {
-  let localTheme = useRef(new Date().getHours() > 18 ? "dark" : "light");
+  const [theme, setTheme] = useState(null);
 
   useEffect(() => {
-    localTheme.current = localStorage.getItem("theme")?.length
-      ? localStorage.getItem("theme")
-      : "dark";
+    setTheme(localStorage.getItem("theme") || "dark");
   }, []);
-
-  const [theme, setTheme] = useState(localTheme.current);
 
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
-    } else {
+      localStorage.setItem("theme", "dark");
+    } else if (theme === "light") {
       document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   }, [theme]);
 
