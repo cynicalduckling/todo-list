@@ -27,15 +27,17 @@ export const getOrCreateUser = async (username) => {
 
 export const deleteTask = async (taskId, userid, completed) => {
     await dbConnect();
+    console.log("deleteTask: Deleting task")
     const task = await Task.findByIdAndDelete(taskId)
+    console.log("deleteTask: Deleted task")
     revalidatePath(`/${userid}`)
 }
 
 export const completeTask = async (todo) => {
     await dbConnect();
-    console.log(todo)
+    console.log("completeTask: Updating task in mongo")
     const task = await Task.findByIdAndUpdate(todo.taskId, { completed: todo.completed })
-    console.log(task)
+    console.log("completeTask: Task completion updated")
     revalidatePath(`/${todo.userid}`)
 }
 
