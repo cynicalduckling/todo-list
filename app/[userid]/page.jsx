@@ -10,6 +10,8 @@ const Todo = async ({ params }) => {
     (localhost ? "http://" + localhost : "https://" + vercel) +
     "/api/tasks?" +
     new URLSearchParams({ userid: params.userid });
+
+  console.log("/userid: api full url => ", url);
   if (params.userid !== "favicon.ico") {
     const res = await fetch(url, { method: "GET", cache: "no-cache" });
     todos = await res.json();
