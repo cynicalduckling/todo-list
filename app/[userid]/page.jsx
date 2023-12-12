@@ -1,8 +1,10 @@
 "use server";
 
 import TodoApp from "@/components/TodoApp";
+import dbConnect from "@/utils/mongoConnect";
 
 const Todo = async ({ params }) => {
+  await dbConnect();
   let todos = [];
   const localhost = process.env.HOST;
   const vercel = process.env.VERCEL_URL;
