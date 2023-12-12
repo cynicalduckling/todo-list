@@ -13,7 +13,6 @@ export const TodoSchema = z.object({
         .trim()
         .min(3, "task name should be 3 characters minimum")
         .max(100, "task name should be 100 characters maximum"),
-    due_date: z.string()
-        .regex("([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))"),
+    due_date: z.coerce.date(),
     category: z.enum(["personal", "work"])
 })

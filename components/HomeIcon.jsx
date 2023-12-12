@@ -8,7 +8,7 @@ const HomeIcon = () => {
       onClick={() => {
         router.push("/");
       }}
-      className="fixed right-2 top-2 h-10 w-10 fill-black stroke-black dark:fill-white dark:stroke-white"
+      className="fixed right-2 top-2 h-10 w-10 cursor-pointer fill-black stroke-black dark:fill-white dark:stroke-white"
     />
   );
 };

@@ -5,7 +5,7 @@ import User from "@/models/user";
 import Task from "@/models/task";
 import { revalidatePath } from "next/cache";
 import dbConnect from "@/utils/mongoConnect";
-import { UsernameSchema } from "@/models/zodschemas"
+import { TodoSchema, UsernameSchema } from "@/models/zodschemas"
 
 
 export const getOrCreateUser = async (username) => {
@@ -45,17 +45,23 @@ export const updateTask = async ({ taskId, name, category, due_date, userid }) =
     revalidatePath(`/${userid}`)
 }
 
-export const addTask = async (userid, formData) => {
-    await dbConnect();
-    const task = {
-        name: formData.get("name"),
-        due_date: Date.parse(formData.get("due_date")),
-        category: formData.get("category"),
-        completed: false,
-        author: userid
+export const addTask = async (userid, task) => {
+    console.log("addTask: Parsing task object")
+    const taskCheck = TodoSchema.safeParse(task)
+
+    if (taskCheck.success) {
+        console.log("addTask: Parsing success")
+        task.author = userid
+        task.completed = false
+        console.log("addTask: Adding task to db")
+        const addedTask = await Task.create(task)
+        console.log("addTask: Added task to db")
+        revalidatePath(`/${userid}`)
+    } else {
+        console.log("addTask: Parsing error returning error message to client")
+        return { "error": taskCheck.error.issues.map((issue) => issue.message).join(" and ") }
     }
-    const addedTask = await Task.create(task)
-    revalidatePath(`/${task.author.userid}`)
+    return {}
 }
 
 
